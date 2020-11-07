@@ -1,4 +1,5 @@
 module.exports = {
+  'parser': 'babel-eslint',
   'env': {
     'browser': true,
     'es2020': true,
@@ -24,6 +25,6 @@ module.exports = {
     'arrow-parens': 'off',
     'no-undef': 'off',
     'comma-dangle': 'off',
-    'require-jsdoc': 'off'
+    'require-jsdoc': 'off',
   },
 };
