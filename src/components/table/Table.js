@@ -1,64 +1,23 @@
-import {ExcelComponent} from '@/core/ExcelComponent';
+import {ExcelComponent} from '../../core/ExcelComponent';
 import {createTable} from './tableTemplate';
+import {resizeHandler} from './tableResize';
+import {shouldResize} from './tableFunctions';
 export class Table extends ExcelComponent {
+  constructor($root) {
+    super($root, {
+      name: 'Table',
+      listeners: ['mousedown']
+    });
+  }
+
   static className = 'excel__table';
+  onMousedown(event) {
+    if (shouldResize(event)) {
+      resizeHandler(this.$root, event);
+    }
+  }
 
   toHTML() {
     return createTable();
   }
-  // toHTML() {
-  //   return `
-  //     <div class="row">
-  //       <div class="row-info"></div>
-  //       <div class="row-data">
-  //         <div class="column">
-  //           A
-  //         </div>
-  //         <div class="column">
-  //           B
-  //         </div>
-  //         <div class="column">
-  //           C
-  //         </div>
-  //         <div class="column">
-  //           A
-  //         </div>
-  //         <div class="column">
-  //           B
-  //         </div>
-  //         <div class="column">
-  //           C
-  //         </div>
-  //         <div class="column">
-  //           A
-  //         </div>
-  //         <div class="column">
-  //           B
-  //         </div>
-  //         <div class="column">
-  //           C
-  //         </div>
-  //         <div class="column">
-  //           A
-  //         </div>
-  //         <div class="column">
-  //           B
-  //         </div>
-  //         <div class="column">
-  //           C
-  //         </div>
-  //       </div>
-  //     </div>
-
-
-  //   <div class="row">
-  //     <div class="row-info">1</div>
-  //     <div class="row-data">
-  //       <div class="cell" contenteditable>A1</div>
-  //       <div class="cell" contenteditable>B2</div>
-  //       <div class="cell selected" contenteditable>C3</div>
-  //     </div>
-  //   </div>
-  //   `;
-  // }
 }
